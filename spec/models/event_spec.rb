@@ -40,7 +40,7 @@ RSpec.describe Event, type: :model do
 
     it 'has many sports' do
       event = create(:event)
-      create_list(:sports, 3, events: [event])
+      create_list(:sport, 3, events: [event])
 
       event.reload
       expect(event.sports.count).to eq(3)
@@ -52,7 +52,7 @@ RSpec.describe Event, type: :model do
       event = create(:event)
       event_id = event.id
       event.destroy
-      event_participants = EventParticipant.where(event_id: event.id)\
+      event_participants = EventParticipant.where(event_id: event.id)
       expect(event_participants).to be_empty
     end
   end

@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_posts, only: [:update, :destroy, :show]
+  # before_action :authenticate_request
 
   def index 
     posts = Post.all 
@@ -11,7 +12,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    posts = Posts.new(posts_params)
+    posts = @currecnt_user.posts.new(posts_params)
 
     if post.save
       render json: post, status: :created
@@ -42,6 +43,6 @@ class PostsController < ApplicationController
   end
 
   def posts_params
-    params.permit(:content, :user_id)
+    params.permit(:content)
   end
 end
